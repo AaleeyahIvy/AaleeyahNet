@@ -1,0 +1,29 @@
+services:
+  web:
+    build: .
+    restart: unless-stopped
+    expose:
+      - "3000"
+    volumes:
+      # persists likes.json + guestbook.json across rebuilds/redeploys
+      - site-data:/app/data
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://127.0.0.1:3000/api/likes"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+
+  nginx:
+    image: nginx:1.27-alpine
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      # - "443:443"   # uncomment once TLS certs are set up
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
+      # - /etc/letsencrypt:/etc/letsencrypt:ro   # for the HTTPS block
+    depends_on:
+      - web
+
+volumes:
+  site-data:
