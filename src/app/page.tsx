@@ -160,9 +160,9 @@ export default function Home() {
 
           <ShimmerCard>
             <div className="socialRow">
-              <a href="https://www.linkedin.com" aria-label="LinkedIn"><PixelIcon name="briefcase" cell={4} /></a>
-              <a href="https://www.instagram.com" aria-label="Instagram"><PixelIcon name="camera" cell={4} /></a>
-              <a href="https://github.com" aria-label="GitHub"><PixelIcon name="paw" cell={4} /></a>
+              <a href="https://www.linkedin.com/in/aaleeyah-ivy-kilgore-823818204/" aria-label="LinkedIn"><PixelIcon name="briefcase" cell={4} /></a>
+              <a href="https://www.instagram.com/aalee_ivy16" aria-label="Instagram"><PixelIcon name="camera" cell={4} /></a>
+              <a href="https://github.com/AaleeyahIvy" aria-label="GitHub"><PixelIcon name="paw" cell={4} /></a>
             </div>
           </ShimmerCard>
         </div>
