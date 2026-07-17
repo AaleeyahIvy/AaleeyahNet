@@ -12,6 +12,7 @@ import DarkModeCard from "@/components/DarkModeCard";
 import PixelIcon from "@/components/PixelIcon";
 import TimeCard from "@/components/TimeCard";
 import SparkleCard from "@/components/SparkleCard";
+import ViewsCard from "@/components/ViewsCard";
 
 export default function Home() {
   const gridRef = useRef<HTMLDivElement>(null);
@@ -61,14 +62,15 @@ export default function Home() {
           <ShimmerCard className="bioCard">
             <p>Hi, my name is Aaleeyah. I see you have stumbled upon my portfolio.</p>
             <p>
-              I&apos;m located in Ohio. I am an associate software engineer at Red
-              Hawk Technologies.
+              I&apos;m located in Ohio. I am an associate software engineer that is currently exploring new opportunities. 
+              I have a passion for programming and design. I love to create things that are both functional and visually appealing. 
+              I have insane ADHD brain, so I have a hard time focusing on one thing for too long. I have a lot of hobbies and interests, 
+              but I&apos;m always looking for new things to learn and explore.
             </p>
             <p>
               I got introduced to programming from discord. I was fascinated at
               people creating their own discord server bots and wanted to do the
-              same. Though since, I have ADHD, I have yet to actually completely
-              create one, lol.
+              same.
             </p>
             <p>
               Anyways I decided to create my 3rd portfolio…to showcase both my
@@ -148,18 +150,7 @@ export default function Home() {
             </div>
           </ShimmerCard>
 
-          <ShimmerCard>
-            <div className="pixel" style={{ fontWeight: 700, fontSize: "1.6rem" }}>
-              Total <span style={{ fontSize: "0.9rem", fontWeight: 400 }}>views <PixelIcon name="eye" cell={3} inline /></span>
-            </div>
-            <div className="chartBars" aria-hidden="true">
-              <span className="bar" style={{ height: "85%" }} />
-              <span className="bar" style={{ height: "18%" }} />
-              <span className="bar" style={{ height: "60%" }} />
-              <span className="bar" style={{ height: "10%" }} />
-            </div>
-            <div className="chartLabel">15/Day</div>
-          </ShimmerCard>
+          <ViewsCard />
 
           <SpotifyCard id="two" />
 
