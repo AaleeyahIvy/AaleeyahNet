@@ -9,7 +9,7 @@ import path from "path";
  * Supabase — the GET/POST shape can stay identical.
  */
 const FILE = path.join(process.cwd(), "data", "likes.json");
-const START = 5000; // seed to match the design :)
+const START = 0; // seed to match the design :)
 
 async function readLikes(): Promise<number> {
   try {
