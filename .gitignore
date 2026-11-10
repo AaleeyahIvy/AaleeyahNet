@@ -1,0 +1,11 @@
+node_modules/
+.next/
+out/
+# runtime data (likes, views, guestbook, uploads) — lives in the Docker volume
+data/
+# secrets — never commit these
+.env
+.env.*
+!.env.example
+*.tsbuildinfo
+.DS_Store

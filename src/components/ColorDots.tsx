@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import ShimmerCard from "./ShimmerCard";
+import { applyAccent } from "./ThemeAccent";
 
 const COLORS = [
   { name: "pink", value: "#f463b1" },
@@ -10,8 +11,8 @@ const COLORS = [
   { name: "green", value: "#4bc97a" },
 ];
 /**
- * Clicking a dot re-themes the search bar accent. Clicking the active dot
- * again resets it to black. Choice persists across pages via localStorage
+ * Clicking a dot re-themes the search bar AND every card (border, tint,
+ * shadow). Clicking the active dot again resets it to black. Choice persists across pages via localStorage
  * (ThemeAccent restores it on every page load).
  */
 export default function ColorDots() {
@@ -24,13 +25,11 @@ export default function ColorDots() {
   const pick = (value: string) => {
     const next = active === value ? null : value;
     setActive(next);
-    if (next) {
-      document.documentElement.style.setProperty("--accent", next);
-      localStorage.setItem("aaleeyah-accent", next);
-    } else {
-      document.documentElement.style.removeProperty("--accent");
-      localStorage.removeItem("aaleeyah-accent");
-    }
+    applyAccent(next);
+    try {
+      if (next) localStorage.setItem("aaleeyah-accent", next);
+      else localStorage.removeItem("aaleeyah-accent");
+    } catch {}
   };
 
   return (
@@ -42,12 +41,12 @@ export default function ColorDots() {
             className={`dot ${active === c.value ? "activeDot" : ""}`}
             style={{ background: c.value }}
             onClick={() => pick(c.value)}
-            aria-label={`Theme the search bar ${c.name}`}
+            aria-label={`Theme the search bar and cards ${c.name}`}
             aria-pressed={active === c.value}
           />
         ))}
       </div>
-      <div className="dotHint">click a color to theme the search bar</div>
+      <div className="dotHint">click a color to theme the search bar + cards</div>
     </ShimmerCard>
   );
 }
