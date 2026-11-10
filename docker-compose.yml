@@ -4,8 +4,12 @@ services:
     restart: unless-stopped
     expose:
       - "3000"
+    # admin panel secrets (create with `npm run admin-setup`, see README)
+    env_file:
+      - path: .env
+        required: false
     volumes:
-      # persists likes.json + guestbook.json across rebuilds/redeploys
+      # persists likes, views, guestbook, gallery photos + resume across rebuilds
       - site-data:/app/data
     healthcheck:
       test: ["CMD", "wget", "-qO-", "http://127.0.0.1:3000/api/likes"]

@@ -13,6 +13,7 @@ import PixelIcon from "@/components/PixelIcon";
 import TimeCard from "@/components/TimeCard";
 import SparkleCard from "@/components/SparkleCard";
 import ViewsCard from "@/components/ViewsCard";
+import SocialLinks from "@/components/SocialLinks";
 
 export default function Home() {
   const gridRef = useRef<HTMLDivElement>(null);
@@ -51,6 +52,8 @@ export default function Home() {
       </div>
 
       <SearchNav />
+
+      <SocialLinks variant="pills" />
 
       <div className="bento" ref={gridRef}>
         {/* ------- column 1 ------- */}
@@ -159,11 +162,7 @@ export default function Home() {
           <SparkleCard />
 
           <ShimmerCard>
-            <div className="socialRow">
-              <a href="https://www.linkedin.com/in/aaleeyah-ivy-kilgore-823818204/" aria-label="LinkedIn"><PixelIcon name="briefcase" cell={4} /></a>
-              <a href="https://www.instagram.com/aalee_ivy16" aria-label="Instagram"><PixelIcon name="camera" cell={4} /></a>
-              <a href="https://github.com/AaleeyahIvy" aria-label="GitHub"><PixelIcon name="paw" cell={4} /></a>
-            </div>
+            <SocialLinks variant="list" title="find me online ↓" />
           </ShimmerCard>
         </div>
       </div>

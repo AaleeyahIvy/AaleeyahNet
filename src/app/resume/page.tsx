@@ -1,21 +1,46 @@
 import ResultsLayout from "@/components/ResultsLayout";
 import ShimmerCard from "@/components/ShimmerCard";
 import PixelIcon from "@/components/PixelIcon";
+import { findResume } from "@/lib/resume";
 
-export default function ResumePage() {
+// check for freshly uploaded resume files on every request
+export const dynamic = "force-dynamic";
+
+export default async function ResumePage() {
+  const [pdf, docx] = await Promise.all([findResume("pdf"), findResume("docx")]);
+  const updated = [pdf?.mtime, docx?.mtime].filter(Boolean).sort((a, b) => +b! - +a!)[0];
+
   return (
     <ResultsLayout placeholder="Aaleeyah's Resume" resultsCount={1}>
       <ShimmerCard className="resumeCard">
-        <a
-          className="downloadBtn"
-          href="/Aaleeyah-Ivy-Kilgore-Resume.pdf"
-          download
-          aria-label="Download resume as PDF"
-        >
-          <PixelIcon name="download" cell={3} />
-        </a>
         <h1 className="resumeName">Aaleeyah Ivy-Kilgore</h1>
         <div className="resumeRole">Software Developer/Engineer</div>
+
+        <div className="resumeActions">
+          {pdf && (
+            <a className="btn btnPink" href="/api/resume/pdf" download>
+              <PixelIcon name="download" cell={3} /> Download PDF
+            </a>
+          )}
+          {docx && (
+            <a className="btn" href="/api/resume/docx" download>
+              <PixelIcon name="download" cell={3} /> Download Word (.docx)
+            </a>
+          )}
+          {pdf && (
+            <a className="btn" href="/api/resume/pdf?view=1" target="_blank" rel="noopener">
+              <PixelIcon name="eye" cell={3} /> View in browser
+            </a>
+          )}
+          {!pdf && !docx && (
+            <span className="note">Downloadable resume coming soon — reach out on LinkedIn in the meantime!</span>
+          )}
+          {updated && (
+            <span className="note">
+              updated {updated.toLocaleDateString("en-US", { month: "short", year: "numeric" })}
+            </span>
+          )}
+        </div>
         <hr className="resumeRule" />
 
         <p>

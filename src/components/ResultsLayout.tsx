@@ -4,6 +4,7 @@ import { ReactNode, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import anime from "animejs/lib/anime.es.js";
 import SearchNav from "./SearchNav";
+import SocialLinks from "./SocialLinks";
 
 const TABS = ["All", "Images", "Videos", "Shopping", "Books"];
 
@@ -66,6 +67,10 @@ export default function ResultsLayout({
       <div className="resultsBody" ref={bodyRef}>
         {children}
       </div>
+
+      <footer className="resultsFooter">
+        <SocialLinks variant="compact" title="find Aaleeyah on" />
+      </footer>
     </main>
   );
 }
